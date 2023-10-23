@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>(); 
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         _animation = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,11 +34,12 @@ public class Player : MonoBehaviour
         _yAxis = Input.GetAxisRaw("Vertical");
 
         //for horizontal movements (left and right)//
-        _rigidbody2D.velocity = new Vector2(_xAxis * xForce,_rigidbody2D.velocity.y);
+        _rigidbody2D.velocity = new Vector2(_xAxis * xForce, _rigidbody2D.velocity.y);
 
-        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             Jump();
+            //_rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, yForce);
         }
         AnimState();
     }
@@ -53,12 +54,13 @@ public class Player : MonoBehaviour
 
     }
     private void AnimState()
-    { 
+    {
         CharacterState state;
         if (_xAxis > 0f)
         {
             state = CharacterState.Running;
             _spriteRenderer.flipX = false;
+           
         }
         else if (_xAxis < 0f)
         {
