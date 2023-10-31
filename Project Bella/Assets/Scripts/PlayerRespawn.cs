@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerRespawn : MonoBehaviour
 {
     private Vector2 RespawnPoint;
-    // Start is called before the first frame update
+    public GameObject DeathScreen;
     void Start()
     {
         //initial spawn point at start//
@@ -21,7 +22,19 @@ public class PlayerRespawn : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("FallDetector"))
         {
-            transform.position = RespawnPoint;
+            DeathScreen.SetActive(true);
+            Time.timeScale = 0f;
+            //transform.position = RespawnPoint;
         }
+        else if(collision.gameObject.CompareTag("Trap"))
+        {
+            DeathScreen.SetActive(true);
+            Time.timeScale = 0f;
+            //transform.position = RespawnPoint;
+        }
+    }
+    public void RespawnButton()
+    {
+        transform.position = RespawnPoint;
     }
 }

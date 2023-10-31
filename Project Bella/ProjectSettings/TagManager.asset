@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FallDetector
   - SavePoint
+  - Trap
   layers:
   - Default
   - TransparentFX
