@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 public class PlayerRespawn : MonoBehaviour
 {
     private Vector2 RespawnPoint;
-    public GameObject DeathScreen;
     void Start()
     {
         //initial spawn point at start//
@@ -22,14 +21,6 @@ public class PlayerRespawn : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("FallDetector"))
         {
-            DeathScreen.SetActive(true);
-            Time.timeScale = 0f;
-            //transform.position = RespawnPoint;
-        }
-        else if(collision.gameObject.CompareTag("Trap"))
-        {
-            DeathScreen.SetActive(true);
-            Time.timeScale = 0f;
             //transform.position = RespawnPoint;
         }
     }
