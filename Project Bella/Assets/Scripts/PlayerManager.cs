@@ -70,6 +70,7 @@ public class PlayerManager : MonoBehaviour
             isAttacking = true;
             StartCoroutine(AttackTime());
         }
+     
     }
     private IEnumerator AttackTime()
     {
