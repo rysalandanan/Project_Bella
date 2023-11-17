@@ -8,10 +8,9 @@ public class PlayerManager : MonoBehaviour
     private float _xAxis;
     private float _yAxis;
     private bool isHit;
-    private bool isDead;
+    private bool isDown;
     private bool isAttacking;
     private bool isMoving;
-    //private bool isGrounded;
 
     [SerializeField] private float xForce; // movement speed;
     [SerializeField] private float yForce; // Jump Power;
@@ -23,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     private Animator _animation;
     private SpriteRenderer _spriteRenderer;
     private static readonly int State = Animator.StringToHash("State");
-    private enum CharacterState { Idle, Running, Jumping, Falling, Hit, Death, Attack }
+    private enum CharacterState { Idle, Running, Jumping, Falling, Hit, Down, Attack }
 
     private void Start()
     {
@@ -36,48 +35,58 @@ public class PlayerManager : MonoBehaviour
     {
         _xAxis = Input.GetAxisRaw("Horizontal");
         _yAxis = Input.GetAxisRaw("Vertical");
-        if(!isAttacking)
+        if(!isAttacking) // CHECKING IF PLAYER IS NOT ATTACKING//
         {
             //for horizontal movements (left and right)//
             _rigidbody2D.velocity = new Vector2(_xAxis * xForce, _rigidbody2D.velocity.y);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) // CHECKING IF PLAYER IS GROUNDED//
         {
-            if(!isAttacking)
+            if(!isAttacking) // CHECKING IF PLAYER IS NOT ATTACKING//
             {
                 Jump();
             }
         }
-        AnimState();
-        CheckAttack();
+        AnimationUpdateState(); // PLAYER ANIMATION UPDATE//
+        CheckAttack(); // CHECKING IF PLAYER ATTACKS//
     }
-    private void Jump()
+    private bool IsGrounded() // CHECKING IF PLAYER IS GROUNDED//
+    {
+        var bounds = _capsuleCollider2D.bounds; // COLLIDER FOR GROUND CHECK//
+        return Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 1f, canJump);
+        // COLLIDER SETTINGS//
+
+    }
+    private void Jump() // PLAYER JUMP//
     {
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, yForce);
     }
-    private bool IsGrounded()
+    private void CheckAttack() //CHECK IF PLAYER ATTACK//
     {
-        var bounds = _capsuleCollider2D.bounds;
-        return Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 1f, canJump);
-
-    }
-    private void CheckAttack()
-    {
-        //for stationary attack//
+        //STATIONARY ATTACK//
         if(Input.GetKeyDown (KeyCode.N) && !isAttacking && !isMoving)
         {
             Debug.Log("Player is attacking");
-            isAttacking = true;
+            isAttacking = true; // STARTS ATTACKING//
             StartCoroutine(AttackTime());
         }
      
     }
-    private IEnumerator AttackTime()
+    private IEnumerator AttackTime() //ATTACK TIMER//
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1); //ATTACK HAS 1 SECOND  DURATION//
         Debug.Log("Attack done");
-        isAttacking = false;
+        isAttacking = false; // NO LONGER ATTACKING//
     }
+    public void PlayerDown()
+    {
+        isDown = true;
+    }
+    public void PlayerRevived()
+    {
+        isDown = false;
+    }
+       
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -90,47 +99,53 @@ public class PlayerManager : MonoBehaviour
     {
         isHit = false;
     }
-    private void AnimState()
+
+    //ANIMATIONS//
+    private void AnimationUpdateState()
     {
         CharacterState state;
-        if (_xAxis > 0f)
+        if (_xAxis > 0f) // CHECKING IF PLAYER IS MOVING RIGHT //
         {
             state = CharacterState.Running;
             _spriteRenderer.flipX = false;
             isAttacking = false;
             isMoving = true;
-           
+
         }
-        else if (_xAxis < 0f)
+        else if (_xAxis < 0f) // CHECKING IF PLAYER IS MOVING LEFT //
         {
             state = CharacterState.Running;
             _spriteRenderer.flipX = true;
             isAttacking = false;
             isMoving = true;
         }
-        else if(_rigidbody2D.velocity.y <-.1f)
+        else if (_rigidbody2D.velocity.y < -.1f) // CHECKING IF PLAYER IS FALLING //
         {
             state = CharacterState.Falling;
             isMoving = true;
         }
-        else if (_rigidbody2D.velocity.y > .1f)
+        else if (_rigidbody2D.velocity.y > .1f) // CHECKING IF PLAYER IS JUMPING //
         {
             state = CharacterState.Jumping;
             isMoving = true;
         }
-        else if (isHit)
+        else if (isHit && !isDown) //CHECKING IF PLAYER GOT HIT //
         {
             state = CharacterState.Hit;
         }
-        else if(isAttacking)
+        else if (isAttacking) // CHECKING IF PLAYER IS ATTACKING //
         {
             state = CharacterState.Attack;
         }
-        else
+        else if(isDown) // CHECKING IF PLAYER IS DOWN //
+        {
+            state = CharacterState.Down;
+        }
+        else // CHECKING IF PLAYER IS NOT DOING ANYTHING //
         {
             state = CharacterState.Idle;
             isMoving = false;
         }
-        _animation.SetInteger(State,(int)state);
+        _animation.SetInteger(State, (int)state);
     }
 }
