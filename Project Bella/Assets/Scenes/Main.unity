@@ -470,52 +470,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 658319561055495270, guid: 6501aedbbd56b4149aed5840e2062ca8, type: 3}
   m_PrefabInstance: {fileID: 4047962409484956207}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &267076921
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 267076923}
-  - component: {fileID: 267076922}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &267076922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267076921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78abc50507d1e74598dbe8d06084621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DownScreen: {fileID: 1842954791}
-  isInputEnabled: 1
---- !u!4 &267076923
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267076921}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.9649, y: -11.129262, z: -0.052644033}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310921785
 GameObject:
   m_ObjectHideFlags: 0
@@ -35044,6 +34998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736168146}
+  - component: {fileID: 1736168147}
   m_Layer: 0
   m_Name: HealthHolder
   m_TagString: Untagged
@@ -35069,6 +35024,24 @@ Transform:
   - {fileID: 1014768420}
   m_Father: {fileID: 2129358158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736168147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736168145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340d807bda46db84cad9a380ccae7567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health_1: {fileID: 159226569}
+  Health_2: {fileID: 2101144036}
+  Health_3: {fileID: 1014768421}
+  DamagedHealth: {fileID: 21300002, guid: fed24bd82cefc0c4a8ef64dab6231b53, type: 3}
+  PlayerDownScreen: {fileID: 1842954791}
+  _playerAnimation: {fileID: 2129358166}
 --- !u!1 &1769356709
 GameObject:
   m_ObjectHideFlags: 0
@@ -35870,7 +35843,8 @@ GameObject:
   - component: {fileID: 2129358161}
   - component: {fileID: 2129358162}
   - component: {fileID: 2129358164}
-  - component: {fileID: 2129358165}
+  - component: {fileID: 2129358166}
+  - component: {fileID: 2129358167}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -35979,12 +35953,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5148f2cc0810f1b48838bad30107d4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 0}
+  _xAxis: 0
+  _yAxis: 0
   xForce: 12
   yForce: 12
   canJump:
     serializedVersion: 2
     m_Bits: 64
-  _gameManager: {fileID: 0}
+  downScreen: {fileID: 1842954791}
 --- !u!50 &2129358161
 Rigidbody2D:
   serializedVersion: 4
@@ -36059,7 +36036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c7d853f02406345b589e7f3b27bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2129358165
+--- !u!114 &2129358166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36068,15 +36045,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129358155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 340d807bda46db84cad9a380ccae7567, type: 3}
+  m_Script: {fileID: 11500000, guid: 17e3381ef7329b74189036a8689b3415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health_1: {fileID: 159226569}
-  Health_2: {fileID: 2101144036}
-  Health_3: {fileID: 1014768421}
-  RemovedHealth: {fileID: 21300002, guid: fed24bd82cefc0c4a8ef64dab6231b53, type: 3}
-  PlayerDownScreen: {fileID: 1842954791}
-  script: {fileID: 2129358159}
+  _playerManager: {fileID: 2129358159}
+--- !u!114 &2129358167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129358155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fbb323cb60a1c4ba354ff720b87263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealthManager: {fileID: 1736168147}
 --- !u!1001 &622020244663490190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36378,4 +36363,3 @@ SceneRoots:
   - {fileID: 972676569}
   - {fileID: 1254107594}
   - {fileID: 778499570}
-  - {fileID: 267076923}

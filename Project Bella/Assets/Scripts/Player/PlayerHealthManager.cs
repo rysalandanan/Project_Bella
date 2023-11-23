@@ -8,58 +8,56 @@ public class PlayerHealthManager : MonoBehaviour
     public SpriteRenderer Health_1;
     public SpriteRenderer Health_2;
     public SpriteRenderer Health_3;
-    public Sprite RemovedHealth;
+    public Sprite DamagedHealth;
     private int healthCount;
     public GameObject PlayerDownScreen;
-    public PlayerManager script;
+    //reference script//
+    public PlayerAnimation _playerAnimation;
+    //
     void Start()
     {
         healthCount = 3;
     }
-
-    // Update is called once per frame
     void Update()
     {
         switch(healthCount)
 
         {
             case 2:
-                Health_3.sprite = RemovedHealth;
+                Health_3.sprite = DamagedHealth;
                 break;
             case 1:
-                Health_2.sprite = RemovedHealth;
+                Health_2.sprite = DamagedHealth;
+                Debug.Log("1 hp");
                 break;
             case 0:
-                Health_1.sprite = RemovedHealth;
+                Health_1.sprite = DamagedHealth;
                 break;
                 
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Trap"))
-        {
-            healthCount--;
-            CheckHealth();
         }
     }
     private void CheckHealth()
     {
         if(healthCount == 0)
         {
-            script.PlayerDown();
             ShowDownScreen();
-        }
-        
+            _playerAnimation.PlayerDownAnimation();
+        }  
     }
     private void ShowDownScreen()
     {
+        //Time.timeScale = 0f;
         PlayerDownScreen.SetActive(true);
     }
     public void PlayerRevived()
     {
-        script.PlayerRevived();
+        //Time.timeScale = 1f;
         healthCount = 3;
-
+    }
+    public void DecreaseHP()
+    {
+        healthCount--;
+        CheckHealth();
+        _playerAnimation.PlayerHitAnimation();
     }
 }
