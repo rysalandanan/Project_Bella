@@ -8,6 +8,7 @@ TagManager:
   - SavePoint
   - Trap
   - Destroyables
+  - Bella
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class PlayerHealthManager : MonoBehaviour
     public Sprite DamagedHealth;
     private int healthCount;
     public GameObject PlayerDownScreen;
+    
     //reference script//
     public PlayerAnimation _playerAnimation;
     //
@@ -28,7 +29,6 @@ public class PlayerHealthManager : MonoBehaviour
                 break;
             case 1:
                 Health_2.sprite = DamagedHealth;
-                Debug.Log("1 hp");
                 break;
             case 0:
                 Health_1.sprite = DamagedHealth;
@@ -46,18 +46,16 @@ public class PlayerHealthManager : MonoBehaviour
     }
     private void ShowDownScreen()
     {
-        //Time.timeScale = 0f;
         PlayerDownScreen.SetActive(true);
     }
     public void PlayerRevived()
     {
-        //Time.timeScale = 1f;
         healthCount = 3;
+        PlayerDownScreen.SetActive(false);
     }
     public void DecreaseHP()
     {
         healthCount--;
         CheckHealth();
-        _playerAnimation.PlayerHitAnimation();
     }
 }

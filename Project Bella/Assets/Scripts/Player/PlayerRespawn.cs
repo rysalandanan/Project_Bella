@@ -21,7 +21,7 @@ public class PlayerRespawn : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("FallDetector"))
         {
-            //transform.position = RespawnPoint;
+            transform.position = RespawnPoint;
         }
     }
     public void RespawnButton()
