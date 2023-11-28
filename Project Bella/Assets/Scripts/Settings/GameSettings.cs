@@ -9,7 +9,7 @@ public class GameSettings : MonoBehaviour
         Time.timeScale = 0f;
    }
    public void UnpauseGame()
-    {
+   {
         Time.timeScale = 1f;
-    }
+   }
 }

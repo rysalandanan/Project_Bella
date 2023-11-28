@@ -10,21 +10,27 @@ public class DialogueScript : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     private int index;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool isPlayerNear;
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("test");
-            textComponent.text = string.Empty;
-            StartDialogue();
+          isPlayerNear = true;
+          textComponent.text = string.Empty;
+          StartDialogue();
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isPlayerNear = false;
+    }
+
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isPlayerNear)
         {
-            Debug.Log("next");
-            if(textComponent.text == lines[index])
+            if (textComponent.text == lines[index])
             {
                 NextLine();
             }
@@ -52,7 +58,6 @@ public class DialogueScript : MonoBehaviour
     void NextLine()
     {
         if(index < lines.Length- 1)
-
         {
             index++;
             textComponent.text = string.Empty;

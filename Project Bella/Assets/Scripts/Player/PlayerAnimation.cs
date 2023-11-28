@@ -6,22 +6,30 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     //reference script//
-    public PlayerManager _playerManager;
+    public PlayerMovement _playerManager;
     //
     private Animator _animator;
     private bool isDown;
+    private SpriteRenderer _spriteRenderer;
    
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {
         if(!isDown)
         {
-            if (_playerManager._xAxis != 0f)
+            if (_playerManager._xAxis > 0f)
             {
                 _animator.Play("Player Movement");
+                _spriteRenderer.flipX = false;
+            }
+            else if (_playerManager._xAxis < 0f)
+            {
+                _animator.Play("Player Movement");
+                _spriteRenderer.flipX = true;
             }
             else if (_playerManager._rigidbody2D.velocity.y > 1f)
             {

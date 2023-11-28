@@ -1861,6 +1861,7 @@ MonoBehaviour:
   - Hmm... a door
   - Well theres no other way out other than this
   textSpeed: 0.05
+  isPlayerNear: 0
 --- !u!1 &865865990
 GameObject:
   m_ObjectHideFlags: 0
@@ -29723,7 +29724,44 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
---- !u!43 &1318429504
+--- !u!1 &1326783243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326783244}
+  m_Layer: 0
+  m_Name: Fall collider Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1326783244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326783243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.96836, y: -1.5046036, z: -0.15966186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1468888842}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1336113447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5469552978010009778, guid: 45dd4f0a0dfca7249a22455f256a58d1, type: 3}
+  m_PrefabInstance: {fileID: 519567921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!43 &1393083691
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29888,43 +29926,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1326783243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1326783244}
-  m_Layer: 0
-  m_Name: Fall collider Holder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1326783244
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326783243}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.96836, y: -1.5046036, z: -0.15966186}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1468888842}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1336113447 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5469552978010009778, guid: 45dd4f0a0dfca7249a22455f256a58d1, type: 3}
-  m_PrefabInstance: {fileID: 519567921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1396613412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3338879071365487843, guid: f965696aa90a20747b25e3e789ddf2b3, type: 3}
@@ -36585,7 +36586,7 @@ GameObject:
   - component: {fileID: 1840074582}
   - component: {fileID: 1840074583}
   - component: {fileID: 1840074584}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: d1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36625,6 +36626,7 @@ MonoBehaviour:
   - argh... where am I?
   - '*shakes head*'
   textSpeed: 0.05
+  isPlayerNear: 0
 --- !u!61 &1840074584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37116,8 +37118,8 @@ MonoBehaviour:
   - {x: 31, y: -4, z: 0}
   - {x: -5, y: -4, z: 0}
   m_ShapePathHash: 751486562
-  m_Mesh: {fileID: 1318429504}
-  m_InstanceId: -6286
+  m_Mesh: {fileID: 1393083691}
+  m_InstanceId: 29882
   m_LocalBounds:
     m_Center: {x: 11, y: 0, z: 0}
     m_Extent: {x: 20, y: 4, z: 0}
@@ -37443,7 +37445,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a39b0e1ad19c4824c98653bbea98a072, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -37564,8 +37566,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2129358162
 CapsuleCollider2D:

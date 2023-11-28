@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D _rigidbody2D;
     public float _xAxis;
