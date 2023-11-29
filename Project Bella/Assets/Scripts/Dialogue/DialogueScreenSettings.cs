@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DialogueScreenSettings : MonoBehaviour
 {
+    [Header("Game script (Settings)")]
     public GameSettings _gameSettings;
     private void OnEnable()
     {

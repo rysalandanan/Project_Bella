@@ -11,10 +11,10 @@ public class PlayerHealthManager : MonoBehaviour
     public Sprite DamagedHealth;
     private int healthCount;
     public GameObject PlayerDownScreen;
-    
+
     //reference script//
+    [Header("Player script (Animation)")]
     public PlayerAnimation _playerAnimation;
-    //
     void Start()
     {
         healthCount = 3;
@@ -41,7 +41,7 @@ public class PlayerHealthManager : MonoBehaviour
         if(healthCount == 0)
         {
             ShowDownScreen();
-            _playerAnimation.PlayerDownAnimation();
+            _playerAnimation.isDown = true;
         }  
     }
     private void ShowDownScreen()
@@ -50,6 +50,7 @@ public class PlayerHealthManager : MonoBehaviour
     }
     public void PlayerRevived()
     {
+        _playerAnimation.isDown = false;
         healthCount = 3;
         PlayerDownScreen.SetActive(false);
     }

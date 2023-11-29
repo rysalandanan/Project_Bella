@@ -6,53 +6,51 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     //reference script//
+    [Header("Player script (Movement)")]
     public PlayerMovement _playerManager;
     //
     private Animator _animator;
-    private bool isDown;
+    public bool isDown;
     private SpriteRenderer _spriteRenderer;
+    private static readonly int State = Animator.StringToHash("State");
+    private enum CharacterState { Idle, Running, Jumping, Falling, Down}
+   
    
     void Start()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        if(!isDown)
+        CharacterState state;
+        if (isDown)
         {
-            if (_playerManager._xAxis > 0f)
-            {
-                _animator.Play("Player Movement");
-                _spriteRenderer.flipX = false;
-            }
-            else if (_playerManager._xAxis < 0f)
-            {
-                _animator.Play("Player Movement");
-                _spriteRenderer.flipX = true;
-            }
-            else if (_playerManager._rigidbody2D.velocity.y > 1f)
-            {
-                _animator.Play("Player Jumping");
-
-            }
-            else if (_playerManager._rigidbody2D.velocity.y < -1f)
-            {
-                _animator.Play("Player Falling");
-            }
-            else
-            {
-                _animator.Play("Player Idle");
-            }
+            state = CharacterState.Down;
         }
+        else if (_playerManager._xAxis > 0f)
+        {
+            _spriteRenderer.flipX = false;
+            state = CharacterState.Running;
+        }
+        else if (_playerManager._xAxis < 0f)
+        {
+            _spriteRenderer.flipX = true;
+            state = CharacterState.Running;
+        }
+        else if (_playerManager._rigidbody2D.velocity.y > .1f)
+        {
+            state = CharacterState.Jumping;
+        }
+        else if (_playerManager._rigidbody2D.velocity.y < -.1f)
+        {
+            state = CharacterState.Falling;
+        }
+        else
+        {
+            state = CharacterState.Idle;
+        }
+        _animator.SetInteger(State,(int)state);
     }
-    public void PlayerDownAnimation()
-    {
-        _animator.Play("Player Down");
-        isDown = true;
-    }
-    public void PlayerRevived()
-    {
-        isDown = false;
-    }
+
 }

@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D _rigidbody2D;
     public float _xAxis;
     public float _yAxis;
-    
 
     [SerializeField] private float xForce; // movement speed;
     [SerializeField] private float yForce; // Jump Power;
@@ -26,11 +25,12 @@ public class PlayerMovement : MonoBehaviour
        _yAxis = Input.GetAxisRaw("Vertical");
        //for horizontal movements (left and right)//
        _rigidbody2D.velocity = new Vector2(_xAxis * xForce, _rigidbody2D.velocity.y);
-       
+
        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) // CHECKING IF PLAYER IS GROUNDED//
        {
-            Jump();
+          Jump();
        }
+       
     }
     private bool IsGrounded() // CHECKING IF PLAYER IS GROUNDED//
     {

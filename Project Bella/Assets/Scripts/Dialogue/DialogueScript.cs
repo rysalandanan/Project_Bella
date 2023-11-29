@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueScript : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class DialogueScript : MonoBehaviour
     public float textSpeed;
     private int index;
     public bool isPlayerNear;
+    public Image DefaultSpeaker;
+    public Sprite Speaker;
+    public bool isTriggerOnce;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -19,6 +23,7 @@ public class DialogueScript : MonoBehaviour
           isPlayerNear = true;
           textComponent.text = string.Empty;
           StartDialogue();
+          SpeakerProfile();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -66,6 +71,14 @@ public class DialogueScript : MonoBehaviour
         else
         {
             DialogueScreen.SetActive(false);
+            if(isTriggerOnce)
+            {
+                Object.Destroy(gameObject);
+            }
         }
+    }
+    private void SpeakerProfile()
+    {
+        DefaultSpeaker.sprite = Speaker;
     }
 }
