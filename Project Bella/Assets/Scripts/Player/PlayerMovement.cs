@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
        {
           Jump();
        }
-       
     }
     private bool IsGrounded() // CHECKING IF PLAYER IS GROUNDED//
     {

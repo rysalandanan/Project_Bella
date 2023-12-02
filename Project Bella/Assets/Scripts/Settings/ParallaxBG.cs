@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ParallaxBG : MonoBehaviour
 {
     private float lenght;
     private float startPos;
-    public GameObject MainCamera;
+    [Header("Main Camera Reference")]
+    [SerializeField] private GameObject MainCamera;
+    
     public float parFX;
     private void Start()
     {
@@ -15,16 +18,17 @@ public class ParallaxBG : MonoBehaviour
     }
     private void Update()
     {
-        float temp = (MainCamera.transform.position.x * (1 - parFX));
-        float dist = (MainCamera.transform.position.x * parFX);
+        float Temp = (MainCamera.transform.position.x * (1 - parFX));
+        float Distance = (MainCamera.transform.position.x * parFX);
+        var TranPos = transform.position;
         //var tranPos = transform.position;
-        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startPos + Distance, TranPos.y,TranPos.z);
 
-        if(temp > startPos + lenght)
+        if(Temp > startPos + lenght)
         {
             startPos += lenght;
         }
-        else if (temp < startPos - lenght)
+        else if (Temp < startPos - lenght)
         {
             startPos -= lenght;
         }

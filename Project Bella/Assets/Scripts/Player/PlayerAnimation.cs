@@ -1,19 +1,16 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     //reference script//
     [Header("Player script (Movement)")]
-    public PlayerMovement _playerManager;
+    public PlayerMovement _pm;
     //
     private Animator _animator;
     public bool isDown;
     private SpriteRenderer _spriteRenderer;
     private static readonly int State = Animator.StringToHash("State");
-    private enum CharacterState { Idle, Running, Jumping, Falling, Down}
+    private enum CharacterState { Idle, Running, Jumping, Falling, Down, Recharge, Attack}
    
    
     void Start()
@@ -28,21 +25,29 @@ public class PlayerAnimation : MonoBehaviour
         {
             state = CharacterState.Down;
         }
-        else if (_playerManager._xAxis > 0f)
+        else if(Input.GetKeyDown(KeyCode.E))
+        {
+            state = CharacterState.Recharge;
+        }
+        else if(Input.GetKeyDown(KeyCode.N))
+        {
+            state = CharacterState.Attack;
+        }
+        else if ( _pm._xAxis > 0f)
         {
             _spriteRenderer.flipX = false;
             state = CharacterState.Running;
         }
-        else if (_playerManager._xAxis < 0f)
+        else if (_pm._xAxis < 0f)
         {
             _spriteRenderer.flipX = true;
             state = CharacterState.Running;
         }
-        else if (_playerManager._rigidbody2D.velocity.y > .1f)
+        else if (_pm._yAxis> .1f)
         {
             state = CharacterState.Jumping;
         }
-        else if (_playerManager._rigidbody2D.velocity.y < -.1f)
+        else if (_pm._yAxis < -.1f)
         {
             state = CharacterState.Falling;
         }
@@ -52,5 +57,4 @@ public class PlayerAnimation : MonoBehaviour
         }
         _animator.SetInteger(State,(int)state);
     }
-
 }
