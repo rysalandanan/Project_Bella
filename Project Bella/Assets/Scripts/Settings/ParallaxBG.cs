@@ -21,8 +21,7 @@ public class ParallaxBG : MonoBehaviour
         float Temp = (MainCamera.transform.position.x * (1 - parFX));
         float Distance = (MainCamera.transform.position.x * parFX);
         var TranPos = transform.position;
-        //var tranPos = transform.position;
-        transform.position = new Vector3(startPos + Distance, TranPos.y,TranPos.z);
+        TranPos = new Vector3(startPos + Distance, TranPos.y,TranPos.z);
 
         if(Temp > startPos + lenght)
         {

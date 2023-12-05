@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Destroyables
   - Bella
+  - Attack-Area
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,6 @@ public class PlayerHealthManager : MonoBehaviour
     void Update()
     {
         switch(healthCount)
-
         {
             case 2:
                 Health_3.sprite = DamagedHealth;
@@ -32,8 +31,7 @@ public class PlayerHealthManager : MonoBehaviour
                 break;
             case 0:
                 Health_1.sprite = DamagedHealth;
-                break;
-                
+                break;   
         }
     }
     private void CheckHealth()

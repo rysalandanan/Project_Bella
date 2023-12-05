@@ -10,7 +10,7 @@ public class PlayerAnimation : MonoBehaviour
     public bool isDown;
     private SpriteRenderer _spriteRenderer;
     private static readonly int State = Animator.StringToHash("State");
-    private enum CharacterState { Idle, Running, Jumping, Falling, Down, Recharge, Attack}
+    private enum CharacterState { Idle, Running, Death, Recharge, Attack}
    
    
     void Start()
@@ -23,13 +23,14 @@ public class PlayerAnimation : MonoBehaviour
         CharacterState state;
         if (isDown)
         {
-            state = CharacterState.Down;
+            state = CharacterState.Death;
         }
-        else if(Input.GetKeyDown(KeyCode.E))
+        else if(Input.GetKey(KeyCode.E))
         {
+            Debug.Log("z");
             state = CharacterState.Recharge;
         }
-        else if(Input.GetKeyDown(KeyCode.N))
+        else if(Input.GetKey(KeyCode.N))
         {
             state = CharacterState.Attack;
         }
@@ -42,14 +43,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             _spriteRenderer.flipX = true;
             state = CharacterState.Running;
-        }
-        else if (_pm._yAxis> .1f)
-        {
-            state = CharacterState.Jumping;
-        }
-        else if (_pm._yAxis < -.1f)
-        {
-            state = CharacterState.Falling;
         }
         else
         {
