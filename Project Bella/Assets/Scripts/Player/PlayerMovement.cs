@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D _rb2D;
     public float _xAxis;
-    public float _yAxis;
     
     //Coyote time//
     private float coyoteTime = 0.2f;
@@ -33,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       _xAxis = Input.GetAxisRaw("Horizontal");
         if(IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -68,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _yAxis = Input.GetAxisRaw("Vertical");
+        _xAxis = Input.GetAxisRaw("Horizontal");
         //for horizontal movements (left and right)//
         _rb2D.velocity = new Vector2(_xAxis * xForce, _rb2D.velocity.y);
     }
