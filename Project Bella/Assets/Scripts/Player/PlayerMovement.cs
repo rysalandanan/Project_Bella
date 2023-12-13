@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D _rb2D;
+    private Rigidbody2D _rb2D;
     public float _xAxis;
+    private float _yAxis;
     
     //Coyote time//
     private float coyoteTime = 0.2f;
@@ -17,7 +19,14 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
-    private bool IsJumping;
+    //Flip//
+    private bool isFacingRight = true;
+
+    //Dash//
+    [Header("Dash settings")]
+    [SerializeField] float dashSpeed = 10f;
+    [SerializeField] float dashCoolDown = 1f;
+    [SerializeField] bool canDash;
 
     [SerializeField] private float xForce; // movement speed;
     [SerializeField] private float yForce; // Jump Power;
@@ -29,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        canDash = true;
     }
     private void Update()
     {
@@ -40,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-        //Player can still jump after leaving the ground for a few seconds (0.2f)//
 
         if(Input.GetButtonDown("Jump"))
         {
@@ -51,29 +60,51 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
 
-        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) //quick tap of the jump button//
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, yForce);
             jumpBufferCounter = 0f;
-            //Jump cut//
         }
-        if(Input.GetButtonUp("Jump") && _rb2D.velocity.y > 0f) // Holding the jump button//
+        if(Input.GetButtonUp("Jump") && _rb2D.velocity.y > 0f) 
         {
             _rb2D.velocity = new Vector2(_rb2D.velocity.x, _rb2D.velocity.y * 0.5f);
             coyoteTimeCounter = 0f;
-            //Increase jump height//
         }
     }
     private void FixedUpdate()
     {
         _xAxis = Input.GetAxisRaw("Horizontal");
-        //for horizontal movements (left and right)//
+        _yAxis = Input.GetAxisRaw("Vertical");
         _rb2D.velocity = new Vector2(_xAxis * xForce, _rb2D.velocity.y);
+
+        if(_xAxis < 0 && isFacingRight)
+        {
+            flip();
+        }
+        if (_xAxis > 0 && !isFacingRight)
+        {
+            flip();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(PlayerDash());
+        }
     }
-    private bool IsGrounded() // CHECKING IF PLAYER IS GROUNDED//
+    private bool IsGrounded()
     {
-       var bounds = _capsuleCollider2D.bounds; // COLLIDER FOR GROUND CHECK//
+       var bounds = _capsuleCollider2D.bounds;
        return Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.2f, canJump);
-        //COLLIDER SETTINGS//
+    }
+    private void flip()
+    {
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0, 180, 0);  
+    }
+    private IEnumerator PlayerDash()
+    {
+        canDash = false;
+        _rb2D.velocity = new Vector2(_xAxis * dashSpeed, _yAxis * dashSpeed);
+        yield return new WaitForSeconds(dashCoolDown);
+        canDash = true;
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerCollider : MonoBehaviour
 {
     //reference script//
-    public PlayerHealthManager _playerHealthManager;
     private SpriteRenderer _spriteRenderer;
     private void Start()
     {
@@ -17,7 +16,6 @@ public class PlayerCollider : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Trap"))
         {
-            _playerHealthManager.DecreaseHP();
             StartCoroutine(HitMarker());
         }
     }

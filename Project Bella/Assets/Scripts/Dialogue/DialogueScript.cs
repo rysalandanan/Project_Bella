@@ -33,7 +33,7 @@ public class DialogueScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isPlayerNear)
+        if (Input.anyKeyDown && isPlayerNear)
         {
             if (textComponent.text == lines[index])
             {

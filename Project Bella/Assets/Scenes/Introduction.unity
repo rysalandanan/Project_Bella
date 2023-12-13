@@ -258,8 +258,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<color=red>Message</color> from the developer:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
-  m_sharedMaterial: {fileID: 4508048848332011962, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -761,8 +761,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This was developed by <color=red>@rysalandanan</color>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
-  m_sharedMaterial: {fileID: 4508048848332011962, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -990,8 +990,8 @@ MonoBehaviour:
     provided). It may not meet your expectations for a 2d platformer game but I do
     hope you <color=yellow>enjoy</color> this short game :)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
-  m_sharedMaterial: {fileID: 4508048848332011962, guid: be7b5a3ee3aca7942b4fb380e49abf7d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
