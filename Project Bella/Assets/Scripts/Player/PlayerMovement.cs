@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,22 +18,26 @@ public class PlayerMovement : MonoBehaviour
     //Flip//
     private bool isFacingRight = true;
 
+    //Trail Renderer
+    private TrailRenderer _trailRenderer;
+
     //Dash//
     [Header("Dash settings")]
     [SerializeField] float dashSpeed = 10f;
     [SerializeField] float dashCoolDown = 1f;
     [SerializeField] bool canDash;
 
-    [SerializeField] private float xForce; // movement speed;
-    [SerializeField] private float yForce; // Jump Power;
+    [SerializeField] private float xForce; 
+    [SerializeField] private float yForce; 
 
-    private CapsuleCollider2D _capsuleCollider2D;// for ground check;
+    private CapsuleCollider2D _capsuleCollider2D;
     [SerializeField] private LayerMask canJump;
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        _trailRenderer = GetComponent<TrailRenderer>();
         canDash = true;
     }
     private void Update()
@@ -76,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         _xAxis = Input.GetAxisRaw("Horizontal");
         _yAxis = Input.GetAxisRaw("Vertical");
         _rb2D.velocity = new Vector2(_xAxis * xForce, _rb2D.velocity.y);
-
         if(_xAxis < 0 && isFacingRight)
         {
             flip();
@@ -102,9 +101,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator PlayerDash()
     {
+        _trailRenderer.emitting = true;
         canDash = false;
         _rb2D.velocity = new Vector2(_xAxis * dashSpeed, _yAxis * dashSpeed);
         yield return new WaitForSeconds(dashCoolDown);
         canDash = true;
+        _trailRenderer.emitting = false;
     }
 }
