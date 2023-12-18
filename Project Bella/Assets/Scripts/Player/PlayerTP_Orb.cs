@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTeleportPlayerTP_Orb : MonoBehaviour 
+public class PlayerTP_Orb : MonoBehaviour 
 {
     public GameObject TP_Orb;
 
