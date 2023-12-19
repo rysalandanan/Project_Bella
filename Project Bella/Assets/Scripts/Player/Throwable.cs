@@ -10,12 +10,16 @@ public class Throwable : MonoBehaviour
     private GameObject TargetPlayer;
     public float TimeTillDestroy;
 
+    private GameObject TP_VFX;
  
     private void OnEnable()
     {
         rb2D.gravityScale = 0f;
-        StartCoroutine(DestroyTimer());
         TargetPlayer = GameObject.Find("Player");
+        TP_VFX = TargetPlayer.transform.GetChild(0).gameObject;
+
+        gameObject.GetComponent<Collider2D>().isTrigger = true;
+        gameObject.GetComponent<Renderer>().enabled = true;
     }
     private void OnMouseDown()
     {
@@ -54,14 +58,24 @@ public class Throwable : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("You hit ground");
-            TargetPlayer.transform.position = this.transform.position;
-            Destroy(gameObject);
+            StartCoroutine(PlayerTP());
         }
     }
-    private IEnumerator DestroyTimer()
+    private IEnumerator PlayerTP()
     {
-        yield return new WaitForSeconds(TimeTillDestroy);
+        Time.timeScale = 0f;
+        TP_VFX.SetActive(true);
+        gameObject.GetComponent<Renderer>().enabled = false;
+        TargetPlayer.GetComponent<Renderer>().enabled = false;
+        var LandingLocation = transform.position;
+        gameObject.GetComponent<Collider2D>().isTrigger = false;
+        yield return new WaitForSecondsRealtime(1f);
+        TargetPlayer.transform.position = LandingLocation;
+        yield return new WaitForSecondsRealtime(2.5f);
+        TP_VFX.SetActive(false);
+        TargetPlayer.GetComponent<Renderer>().enabled = true;
+        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(1f);
         Destroy(gameObject);
     }
 }

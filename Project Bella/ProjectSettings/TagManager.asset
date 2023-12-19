@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Bella
   - Ground
+  - TP_VFX
   layers:
   - Default
   - TransparentFX
