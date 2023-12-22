@@ -10,6 +10,8 @@ public class PlayerAnimation : MonoBehaviour
     public bool isDown;
     private static readonly int State = Animator.StringToHash("State");
     private enum CharacterState { Idle, Running, Death, Recharge, Attack}
+
+    public GameObject Crosshair;
    
    
     void Start()
@@ -26,6 +28,7 @@ public class PlayerAnimation : MonoBehaviour
         else if(Input.GetKey(KeyCode.E))
         {
             state = CharacterState.Recharge;
+            Crosshair.SetActive(true);
         }
         else if ( _pm._xAxis > 0f)
         {

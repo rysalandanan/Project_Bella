@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: bdf1d26156161df4582f6dc3b7845bd4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: crosshair_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 74
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f39cda0df319a54a8ff9d90e03f711d
+      internalID: -1856124791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      crosshair_0: 342891879
+      crosshair_1: 552065057
+      crosshair_10: -855447430
+      crosshair_11: -1764716156
+      crosshair_12: 783731603
+      crosshair_13: 414812943
+      crosshair_14: 2026315084
+      crosshair_15: -1353692251
+      crosshair_16: -2099255967
+      crosshair_17: 591271587
+      crosshair_18: 578326958
+      crosshair_19: -832998788
+      crosshair_2: 1078384855
+      crosshair_20: 1157048347
+      crosshair_21: -348930475
+      crosshair_22: 406338795
+      crosshair_23: -1751226249
+      crosshair_24: -924609608
+      crosshair_25: 327765385
+      crosshair_26: 450964527
+      crosshair_27: -1808969630
+      crosshair_28: 1993587651
+      crosshair_29: 1364785195
+      crosshair_3: -1674124862
+      crosshair_30: -1644263002
+      crosshair_31: 735935490
+      crosshair_32: -1703984848
+      crosshair_33: 472035260
+      crosshair_34: 642882266
+      crosshair_35: -129579483
+      crosshair_36: -2070044805
+      crosshair_37: 773240300
+      crosshair_38: -308049323
+      crosshair_39: -1471472577
+      crosshair_4: 681173095
+      crosshair_40: -561273093
+      crosshair_41: -1437732327
+      crosshair_42: 100672056
+      crosshair_43: 541565813
+      crosshair_44: 1909705809
+      crosshair_45: 512088463
+      crosshair_46: 1732654885
+      crosshair_47: 2060252463
+      crosshair_48: -1227297604
+      crosshair_49: -1130188979
+      crosshair_5: 87045542
+      crosshair_6: -1856124791
+      crosshair_7: -690265599
+      crosshair_8: -1910442279
+      crosshair_9: -330663431
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
