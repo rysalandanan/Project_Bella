@@ -1,19 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public GameObject Menu;
-    public float waitTime;
-    public void PlayButton()
+    public GameObject mainMenu;
+    public GameObject creditMenu;
+   public void StartButton()
+   {
+        SceneManager.LoadScene("Main");
+   }
+   public void CreditsButton()
+   {
+        mainMenu.SetActive(false);
+        creditMenu.SetActive(true);
+   }
+   public void QuitButton()
+   {
+        Application.Quit();
+   }
+    public void BackToMainMenu()
     {
-        StartCoroutine(GoPlay());
-    }
-
-    private IEnumerator GoPlay()
-    {
-        yield return new WaitForSeconds(waitTime);
-        Menu.SetActive(false);
+        mainMenu.SetActive(true);
+        creditMenu.SetActive(false);
     }
 }
